@@ -1,10 +1,17 @@
 import { View, Text, Image } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Colors, { BG_COLOR, TEXT_COLOR } from "../../utils/Colors";
 import { StyleSheet } from 'react-native';
 import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters';
+import { useNavigation } from 'expo-router';
 
 const Splash = () => {
+  const navigation=useNavigation()
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate("SelectUser")
+    }, 3000)
+  },[])
   return (
     <View style={styles.container}>
       <Image source = {require('../../images/logows.png')} style={styles.logo} />
