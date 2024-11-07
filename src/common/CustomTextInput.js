@@ -1,9 +1,8 @@
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import React from 'react'
 import { moderateScale, moderateVerticalScale, verticalScale } from 'react-native-size-matters';
-import LoginForCompany from '../screens/jobposting/LoginForCompany';
 import { BG_COLOR } from '../utils/Colors';
-import SignUpForCompany from '../screens/jobposting/SignUpForCompany';
+
 
 
 const CustomTextInput = ({title, placeholder, value, onChangeText, bad}) => {

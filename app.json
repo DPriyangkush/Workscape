@@ -20,7 +20,10 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.priyangkush.Workscape"
+      "package": "com.priyangkush.Workscape",
+      "config": {
+        "googleServicesFile": "./google-service.json"
+      }
     },
     "web": {
       "bundler": "metro",
@@ -28,7 +31,8 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "@react-native-firebase/app"
     ],
     "experiments": {
       "typedRoutes": true

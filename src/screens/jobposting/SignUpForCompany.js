@@ -1,14 +1,18 @@
 import { View, Text, StyleSheet, SafeAreaView, Image, ScrollView, Alert } from 'react-native'
 import React, { useState } from 'react'
-import { BG_COLOR } from '@/src/utils/Colors'
+import { BG_COLOR, TEXT_COLOR } from '@/src/utils/Colors'
 import { moderateScale, moderateVerticalScale, scale } from 'react-native-size-matters'
 import CustomTextInput from "../../common/CustomTextInput"
 import CustomSolidBtn from "../../common/CustomSolidBtn"
 import CustomBorderBtn from "../../common/CustomBorderBtn"
 import { useNavigation } from '@react-navigation/native'
+import Loader from '../../common/Loader'
+import firestore from '@react-native-firebase/firestore'
 
 const SignUpForCompany = () => {
   const navigation = useNavigation();
+
+  const [accountCreated, setAccountCreated] = useState(false)
   const [name, setName] = useState('')
   const [badName, setBadName] = useState('')
 
@@ -26,6 +30,8 @@ const SignUpForCompany = () => {
 
   const [password, setPassword] = useState('')
   const [badPassword, setBadPassword] = useState('')
+
+  const [loading, setLoading] = useState(false)
 
   const validate = () => {
     let nameRegex = /^[A-Za-z]+$/;
@@ -107,9 +113,41 @@ const SignUpForCompany = () => {
     return validName && validEmail && validContact && validCompany && validAddress && validPass
   }
 
+  const registerUser = () => {
+    setLoading(true);
+    firestore()
+    .collection('job_posters')
+    .add({
+      name,
+      email,
+      contact,
+      address,
+      company,
+      password,
+    })
+    .then(() => {
+      setName("")
+      setEmail("")
+      setPassword("")
+      setAddress("")
+      setCompany("")
+      setContact("")
+      setAccountCreated(true);
+      setLoading(false);
+      setTimeout(() => {
+        navigation.goBack();
+      }, 3000)
+    })
+    .catch(error => {
+      setLoading(false);
+      console.log(error);
+      
+    });
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      {!accountCreated ?(<ScrollView>
         <Image source={require('../../images/logows.png')} style={styles.logo} />
         <Text style={styles.title}>Create Account</Text>
         <CustomTextInput value={name} onChangeText={txt => { setName(txt); }} title={"Name"} placeholder={"xyz"} bad={badName != '' ? true : false} />
@@ -126,13 +164,20 @@ const SignUpForCompany = () => {
         {badPassword != '' && <Text style={styles.errorMsg}>{badPassword}</Text>}
         <CustomSolidBtn title={"Sign Up"} onClick={() => {
           if (validate()) {
-              Alert.alert('Ready to send data!')
+              registerUser()
           }
         }} />
         <CustomBorderBtn title={"Login"} onClick={() => {
           navigation.goBack()
         }} />
-      </ScrollView>
+        <Loader visible = {loading}/>
+      </ScrollView>):(
+        <View style={styles.doneView}>
+          <Image source={require('../../images/check.png')} style={styles.logo} />
+          <Text style={styles.title}>{'Account Created Successfully'}</Text>
+        </View>
+      )}
+      
     </SafeAreaView>
   )
 }
@@ -166,5 +211,11 @@ const styles = StyleSheet.create({
   errorMsg: {
     marginLeft: moderateScale(35),
     color: 'red',
-  }
+  },
+  doneView:{
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 })
