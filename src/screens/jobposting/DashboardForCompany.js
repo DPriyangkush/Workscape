@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: verticalScale(60),
     backgroundColor: '#FFF7D1',
-    shadowColor: BG_COLOR,
+    shadowColor: 'Black',
     shadowOpacity: 1,
     shadowOffset: {x: 0, y: 1},
     position: 'absolute',
@@ -61,6 +61,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
     
   },
   bottomTab: {
