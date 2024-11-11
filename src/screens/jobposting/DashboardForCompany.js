@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: verticalScale(60),
     backgroundColor: '#FFF7D1',
-    shadowColor: 'Black',
+    shadowColor: 'black',
     shadowOpacity: 1,
     shadowOffset: {x: 0, y: 1},
     position: 'absolute',
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    
+    elevation: 10,
   },
   bottomTab: {
     width: '20%',
