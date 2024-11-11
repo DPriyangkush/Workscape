@@ -7,9 +7,11 @@ import  Chats  from '../jobposting/tabs/Chats'
 import  AddJob  from '../jobposting/tabs/AddJob'
 import  Profile1  from '../jobposting/tabs/Profile1'
 import  SearchCandidates  from '../jobposting/tabs/SearchCandidates'
+import { useNavigation } from 'expo-router';
 
 const DashboardForCompany = () => {
   const [selectedTab, setSelectedTab] = useState(0);
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       {selectedTab == 0 ? <MyJobs />: selectedTab == 1 ? <SearchCandidates /> : selectedTab == 2 ? <AddJob /> : selectedTab == 3 ? <Chats /> : <Profile1 />}
@@ -27,7 +29,8 @@ const DashboardForCompany = () => {
           {selectedTab === 1 && <View style={styles.selectedIndicator} />}
         </TouchableOpacity>
         <TouchableOpacity style={styles.bottomTab} onPress={() => {
-          setSelectedTab(2)
+          //setSelectedTab(2)
+          navigation.navigate("AddJob")
         }}>
           <Image source={require('../../images/addition.png')} style={[styles.tabIcon, { tintColor: selectedTab == 2 ? '#8B5DFF' : 'rgba(15, 15, 15, 0.8)' },]} />
           {selectedTab === 2 && <View style={styles.selectedIndicator} />}
