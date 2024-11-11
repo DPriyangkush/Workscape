@@ -2,41 +2,47 @@ import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image } from 'r
 import React, { useState } from 'react'
 import { BG_COLOR, TEXT_COLOR } from '@/src/utils/Colors';
 import { moderateScale, verticalScale, scale } from 'react-native-size-matters';
+import MyJobs  from '../jobposting/tabs/MyJobs'
+import  Chats  from '../jobposting/tabs/Chats'
+import  AddJob  from '../jobposting/tabs/AddJob'
+import  Profile1  from '../jobposting/tabs/Profile1'
+import  SearchCandidates  from '../jobposting/tabs/SearchCandidates'
 
 const DashboardForCompany = () => {
   const [selectedTab, setSelectedTab] = useState(0);
   return (
     <SafeAreaView style={styles.container}>
+      {selectedTab == 0 ? <MyJobs />: selectedTab == 1 ? <SearchCandidates /> : selectedTab == 2 ? <AddJob /> : selectedTab == 3 ? <Chats /> : <Profile1 />}
       <View style={styles.bottomView}>
         <TouchableOpacity style={styles.bottomTab} onPress={() => {
           setSelectedTab(0)
         }}>
-          <Image source={require('../../images/home.png')} style={[styles.tabIcon, {tintColor: selectedTab == 0 ? '#8B5DFF' : 'rgba(15, 15, 15, 0.8)'},]} />
+          <Image source={require('../../images/home.png')} style={[styles.tabIcon, { tintColor: selectedTab == 0 ? '#8B5DFF' : 'rgba(15, 15, 15, 0.8)' },]} />
           {selectedTab === 0 && <View style={styles.selectedIndicator} />}
         </TouchableOpacity>
         <TouchableOpacity style={styles.bottomTab} onPress={() => {
           setSelectedTab(1)
         }}>
-        <Image source={require('../../images/search-user.png')} style={[styles.tabIcon, {tintColor: selectedTab == 1 ? '#8B5DFF' : 'rgba(15, 15, 15, 0.8)'},]}/>
-        {selectedTab === 1 && <View style={styles.selectedIndicator} />}
+          <Image source={require('../../images/search-user.png')} style={[styles.tabIcon, { tintColor: selectedTab == 1 ? '#8B5DFF' : 'rgba(15, 15, 15, 0.8)' },]} />
+          {selectedTab === 1 && <View style={styles.selectedIndicator} />}
         </TouchableOpacity>
         <TouchableOpacity style={styles.bottomTab} onPress={() => {
           setSelectedTab(2)
         }}>
-        <Image source={require('../../images/addition.png')} style={[styles.tabIcon, {tintColor: selectedTab == 2 ? '#8B5DFF' : 'rgba(15, 15, 15, 0.8)'},]}/>
-        {selectedTab === 2 && <View style={styles.selectedIndicator} />}
+          <Image source={require('../../images/addition.png')} style={[styles.tabIcon, { tintColor: selectedTab == 2 ? '#8B5DFF' : 'rgba(15, 15, 15, 0.8)' },]} />
+          {selectedTab === 2 && <View style={styles.selectedIndicator} />}
         </TouchableOpacity>
         <TouchableOpacity style={styles.bottomTab} onPress={() => {
           setSelectedTab(3)
         }}>
-        <Image source={require('../../images/chat.png')} style={[styles.tabIcon, {tintColor: selectedTab == 3 ? '#8B5DFF' : 'rgba(15, 15, 15, 0.8)'},]} />
-        {selectedTab === 3 && <View style={styles.selectedIndicator} />}
+          <Image source={require('../../images/chat.png')} style={[styles.tabIcon, { tintColor: selectedTab == 3 ? '#8B5DFF' : 'rgba(15, 15, 15, 0.8)' },]} />
+          {selectedTab === 3 && <View style={styles.selectedIndicator} />}
         </TouchableOpacity>
         <TouchableOpacity style={styles.bottomTab} onPress={() => {
           setSelectedTab(4)
         }}>
-        <Image source={require('../../images/user.png')} style={[styles.tabIcon, {tintColor: selectedTab == 4 ? '#8B5DFF' : 'rgba(15, 15, 15, 0.8)'},]} />
-        {selectedTab === 4 && <View style={styles.selectedIndicator} />}
+          <Image source={require('../../images/user.png')} style={[styles.tabIcon, { tintColor: selectedTab == 4 ? '#8B5DFF' : 'rgba(15, 15, 15, 0.8)' },]} />
+          {selectedTab === 4 && <View style={styles.selectedIndicator} />}
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -55,7 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF7D1',
     shadowColor: 'black',
     shadowOpacity: 1,
-    shadowOffset: {x: 0, y: 1},
+    shadowOffset: { x: 0, y: 1 },
     position: 'absolute',
     bottom: 0,
     flexDirection: 'row',
@@ -70,13 +76,13 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    
-    
+
+
   },
   tabIcon: {
     width: scale(24),
     height: scale(24),
-    
+
   },
   selectedIndicator: {
     width: '40%',
@@ -84,7 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#8B5DFF',
     marginTop: 6,
     borderRadius: 2,
-    
+
   }
 
 })
