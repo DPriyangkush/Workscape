@@ -1,20 +1,21 @@
-import { View, Text, StyleSheet, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Image } from 'react-native'
 import React from 'react'
-import { moderateScale, moderateVerticalScale, verticalScale } from 'react-native-size-matters';
+import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters';
 import { BG_COLOR } from '../utils/Colors';
 
 
 
-const CustomTextInput = ({title, placeholder, value, onChangeText, bad, keyboardType}) => {
+const CustomDropdown = ({title, placeholder, bad}) => {
   return (
     <View style={[styles.input,{borderColor:bad?'red':'#9e9e9e'}]}>
       <Text style={[styles.title, {color:bad?'red':'black'}]}>{title}</Text>
-      <TextInput value={value} onChangeText={txt => onChangeText(txt)} placeholder={placeholder} keyboardType={keyboardType?keyboardType:'default'}></TextInput>
+      <Text style={{color: '#9e9e9e'}}>{placeholder}</Text>
+      <Image source={require('../images/down.png')} style={styles.icon} />
     </View>
   )
 }
 
-export default CustomTextInput;
+export default CustomDropdown;
 const styles = StyleSheet.create({
     input: {
         width: '90%',
@@ -26,6 +27,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         paddingLeft: moderateScale(15),
         paddingRight: moderateScale(15),
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     title: {
         alignSelf: "flex-start",
@@ -44,6 +48,10 @@ const styles = StyleSheet.create({
         backgroundColor: BG_COLOR,
         paddingLeft: moderateScale(10),
         paddingRight: moderateScale(10),
+    },
+    icon: {
+        width: scale(20),
+        height: scale(20),
     }
     
 })
