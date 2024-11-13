@@ -5,9 +5,40 @@ import { BG_COLOR } from '@/src/utils/Colors'
 
 const AddJob = () => {
     const [jobTitle, setJobTitle] = useState('')
+    const [jobDescription, setJobDescription] = useState('');
+    const [experience, setExperience] = useState('');
+    const [salary, setSalary] = useState('');
+    const [company, setCompany] = useState('');
+
+
   return (
     <SafeAreaView style={styles.container}>
-        <CustomTextInput value={jobTitle} onChangeText={txt => { setJobTitle(txt); }} title={"Job Title"} placeholder={"Job Title"}  />
+        <CustomTextInput value={jobTitle} 
+          onChangeText={txt => { setJobTitle(txt); }} 
+          title={"Job Title"} 
+          placeholder={"Ex. Web Dev"}  />
+        
+        <CustomTextInput value={jobDescription} 
+          onChangeText={txt => { setJobDescription(txt); }} 
+          title={"Job Description"} 
+          placeholder={"Provide a detailed description of job"}  />
+
+        <CustomTextInput value={experience} 
+          onChangeText={txt => { setExperience(txt); }} 
+          title={"Experience"} 
+          placeholder={"Required Experience"}  />
+
+        <CustomTextInput value={salary} 
+          onChangeText={txt => { setSalary(txt); }} 
+          title={"Package"} 
+          placeholder={"Ex. 10L/Annum"}  />
+
+        <CustomTextInput value={company} 
+          onChangeText={txt => { setCompany(txt); }} 
+          title={"Company Name"} 
+          placeholder={"Ex. Google"}  />
+
+       
     </SafeAreaView>
   )
 }
