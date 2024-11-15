@@ -1,17 +1,19 @@
-import { View, Text, StyleSheet, TextInput, Image } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters';
 import { BG_COLOR } from '../utils/Colors';
 
 
 
-const CustomDropdown = ({title, placeholder, bad}) => {
+const CustomDropdown = ({title, placeholder, bad, onClick}) => {
   return (
-    <View style={[styles.input,{borderColor:bad?'red':'#9e9e9e'}]}>
+    <TouchableOpacity style={[styles.input,{borderColor:bad?'red':'#9e9e9e'}]} onPress={() => {
+      onClick()
+      }}>
       <Text style={[styles.title, {color:bad?'red':'black'}]}>{title}</Text>
       <Text style={{color: '#9e9e9e'}}>{placeholder}</Text>
       <Image source={require('../images/down.png')} style={styles.icon} />
-    </View>
+    </TouchableOpacity>
   )
 }
 
