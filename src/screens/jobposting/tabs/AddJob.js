@@ -7,6 +7,9 @@ import CustomSolidBtn from '@/src/common/CustomSolidBtn'
 import { useNavigation } from 'expo-router'
 import { moderateScale, verticalScale } from 'react-native-size-matters'
 import {profiles} from '../../../utils/Profiles'
+import firestore from '@react-native-firebase/firestore'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import Loader from '@/src/common/Loader'
 
 const AddJob = () => {
     const [jobTitle, setJobTitle] = useState('')
@@ -18,6 +21,40 @@ const AddJob = () => {
     const [openCategoryModal, setCategoryModal] = useState(false)
     const [openSkillModal, setSkillModal] = useState(false)
     const [selectedCategory, setSelectedCategory] = useState('Select Category');
+    const [SelectedSkill, setSelectedSkill] = useState('Select Skill')
+    const [loading, setLoading] = useState(false);
+
+    const postJob = async () => { // Make the function async
+      try {
+          setLoading(true); // Set loading before starting the async process
+          
+          // Fetch USER_ID and NAME from AsyncStorage
+          const id = await AsyncStorage.getItem("USER_ID");
+          const name = await AsyncStorage.getItem("NAME");
+  
+          // Add the job posting to Firestore
+          await firestore().collection("jobs").add({
+              postedBy: id,
+              posterName: name,
+              jobTitle,
+              jobDescription,
+              experience,
+              salary,
+              company,
+              skill: SelectedSkill,
+              category: selectedCategory,
+          });
+  
+          // Navigate back after successful post
+          setLoading(false);
+          navigation.goBack();
+      } catch (err) {
+          // Handle errors
+          setLoading(false);
+          console.error("Error posting job:", err);
+      }
+  };
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -43,8 +80,10 @@ const AddJob = () => {
         <CustomDropdown value={jobDescription} 
           onChangeText={txt => { setJobDescription(txt); }} 
           title={"Skills"} 
-          placeholder={"Select Skills"}
-          onClick={() => {}}  />
+          placeholder={SelectedSkill}
+          onClick={() => {
+            setSkillModal(true);
+          }}  />
         
 
         <CustomTextInput value={experience} 
@@ -64,7 +103,9 @@ const AddJob = () => {
           title={"Company Name"} 
           placeholder={"Ex. Google"}  />
 
-        <CustomSolidBtn title={'Post Job'} onClick={() => {}}/>
+        <CustomSolidBtn title={'Post Job'} onClick={() => {
+          postJob();
+        }}/>
         <Modal visible={openCategoryModal} transparent style={{flex: 1}}>
           <View style={styles.ModalMainView}>
             <View style={styles.listingView}>
@@ -87,7 +128,29 @@ const AddJob = () => {
             </View>
           </View>
         </Modal>
-        
+        <Modal visible={openSkillModal} transparent style={{flex: 1}}>
+          <View style={styles.ModalMainView}>
+            <View style={styles.listingView}>
+              <Text style={[styles.title, {marginTop: moderateScale(10)}]}>Select Category</Text>
+              <FlatList data={selectedCategory == 'Select Category' ? profiles[0].keywords : profiles[selectedCategory].keywords} renderItem={({item, index}) => {
+                return(
+                  <TouchableOpacity style={styles.profileItem} onPress={() => {
+                    setSelectedSkill(item[0]);
+                    setSkillModal(false);
+                  }}>
+                    <Text>{item[0]}</Text>
+                    
+                    
+                  </TouchableOpacity>
+                  
+                )
+                
+              }}/>
+              
+            </View>
+          </View>
+        </Modal>
+        <Loader visible={loading} />
     </SafeAreaView>
     
   )
