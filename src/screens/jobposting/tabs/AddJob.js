@@ -42,7 +42,7 @@ const AddJob = () => {
               salary,
               company,
               skill: SelectedSkill,
-              category: selectedCategory,
+              category: profiles[selectedCategory].category,
           });
   
           // Navigate back after successful post
