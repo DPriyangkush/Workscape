@@ -21,11 +21,12 @@ const MyJobs = () => {
     .collection('jobs')
     .where('postedBy', '==', id)
     .get()
-    .then(data => {
+    .then(async (data) => {
       let temp = [];
       data.docs.forEach(item => {
         temp.push({...item.data(), id: item.id});
       });
+      await AsyncStorage.setItem("JOBS", temp.length+"")
       setJobs(temp)
     });
 

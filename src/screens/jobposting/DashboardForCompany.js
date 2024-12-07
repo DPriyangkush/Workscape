@@ -14,7 +14,7 @@ const DashboardForCompany = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
-      {selectedTab == 0 ? <MyJobs />: selectedTab == 1 ? <SearchCandidates /> : selectedTab == 2 ? <AddJob /> : selectedTab == 3 ? <Chats /> : <Profile1 />}
+      {selectedTab == 0 ? <MyJobs />: selectedTab == 1 ? <SearchCandidates /> : selectedTab == 2 ? <AddJob /> : selectedTab == 3 ? <Chats /> : <Profile1 onJobsClick={() => {setSelectedTab(0)}}/>}
       <View style={styles.bottomView}>
         <TouchableOpacity style={styles.bottomTab} onPress={() => {
           setSelectedTab(0)

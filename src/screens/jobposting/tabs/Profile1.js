@@ -1,18 +1,21 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
+import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters'
 import { TEXT_COLOR, BG_COLOR } from '@/src/utils/Colors'
 import { useIsFocused } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import ProfileOptionItem from "../../../common/ProfileOptionItem"
 
-const Profile1 = () => {
+const Profile1 = ({onJobsClick}) => {
   const [name, setName] = useState('');
+  const [jobs, setJobs] = useState('')
   const isFocused = useIsFocused()
   useEffect(() => {
     getData()
   }, [isFocused])
   const getData = async () => {
     setName(await AsyncStorage.getItem('NAME'));
+    setJobs(await AsyncStorage.getItem("JOBS"));
   };
   return (
     <View style={styles.container}>
@@ -23,6 +26,12 @@ const Profile1 = () => {
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.changeProfile}>Edit Name</Text>
       <Text style={styles.changeProfile}>Change Profile Picture </Text>
+      <View style={styles.optionArea}>
+        <ProfileOptionItem icon={require('../../../images/jobs.png')} title={'My Jobs ('+jobs+")"} onClick={() => onJobsClick()}/>
+        <ProfileOptionItem icon={require('../../../images/contact_us.png')} title={'Contact Us'} onClick={() => { } }/>
+        <ProfileOptionItem icon={require('../../../images/theme.png')} title={'App Theme'} onClick={() => { } }/>
+        <ProfileOptionItem icon={require('../../../images/logout.png')} title={'Logout'} onClick={() => { } }/>
+      </View>
     </View>
   )
 }
@@ -58,5 +67,8 @@ name: {
   fontWeight: '600',
   alignSelf: 'center',
   marginTop: moderateScale(10),
+},
+optionArea: {
+  marginTop: moderateVerticalScale(70),
 }
 })
