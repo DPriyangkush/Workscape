@@ -10,6 +10,7 @@ import { useNavigation } from 'expo-router'
 const Profile1 = ({onJobsClick}) => {
   const [name, setName] = useState('');
   const [jobs, setJobs] = useState('');
+  const [profileImg, setProfileImg]=useState('');
   const navigation = useNavigation();
   const isFocused = useIsFocused()
   useEffect(() => {
@@ -18,16 +19,20 @@ const Profile1 = ({onJobsClick}) => {
   const getData = async () => {
     setName(await AsyncStorage.getItem('NAME'));
     setJobs(await AsyncStorage.getItem("JOBS"));
+    let img = await AsyncStorage.getItem('PROFILE_IMAGE');
+    if (img != null){
+      setProfileImg(img);
+    }
   };
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>WorkScape</Text>
       <TouchableOpacity>
-        <Image source={require('../../../images/account.png')} style={styles.profileImg} />
+        {profileImg != '' ? ( <Image source={{uri: profileImg}} style={styles.profileImg} /> ) : ( <Image source={require('../../../images/account.png')} style={styles.profileImg} /> )}
       </TouchableOpacity>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.changeProfile} onPress={() => {navigation.navigate('UpdateProfileForCompany')}}>Edit Name</Text>
-      <Text style={styles.changeProfile}>Change Profile Picture </Text>
+      <Text style={styles.changeProfile} onPress={() => {navigation.navigate('ChangeProfilePicForCompany')}}>Change Profile Picture </Text>
       <View style={styles.optionArea}>
         <ProfileOptionItem icon={require('../../../images/jobs.png')} title={'My Jobs ('+jobs+")"} onClick={() => onJobsClick()}/>
         <ProfileOptionItem icon={require('../../../images/contact_us.png')} title={'Contact Us'} onClick={() => { } }/>
