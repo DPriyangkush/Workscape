@@ -5,10 +5,12 @@ import { TEXT_COLOR, BG_COLOR } from '@/src/utils/Colors'
 import { useIsFocused } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import ProfileOptionItem from "../../../common/ProfileOptionItem"
+import { useNavigation } from 'expo-router'
 
 const Profile1 = ({onJobsClick}) => {
   const [name, setName] = useState('');
-  const [jobs, setJobs] = useState('')
+  const [jobs, setJobs] = useState('');
+  const navigation = useNavigation();
   const isFocused = useIsFocused()
   useEffect(() => {
     getData()
@@ -24,7 +26,7 @@ const Profile1 = ({onJobsClick}) => {
         <Image source={require('../../../images/account.png')} style={styles.profileImg} />
       </TouchableOpacity>
       <Text style={styles.name}>{name}</Text>
-      <Text style={styles.changeProfile}>Edit Name</Text>
+      <Text style={styles.changeProfile} onPress={() => {navigation.navigate('UpdateProfileForCompany')}}>Edit Name</Text>
       <Text style={styles.changeProfile}>Change Profile Picture </Text>
       <View style={styles.optionArea}>
         <ProfileOptionItem icon={require('../../../images/jobs.png')} title={'My Jobs ('+jobs+")"} onClick={() => onJobsClick()}/>
