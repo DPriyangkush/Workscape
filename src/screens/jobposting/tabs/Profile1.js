@@ -37,7 +37,7 @@ const Profile1 = ({onJobsClick}) => {
         <ProfileOptionItem icon={require('../../../images/jobs.png')} title={'My Jobs ('+jobs+")"} onClick={() => onJobsClick()}/>
         <ProfileOptionItem icon={require('../../../images/contact_us.png')} title={'Contact Us'} onClick={() => { } }/>
         <ProfileOptionItem icon={require('../../../images/theme.png')} title={'App Theme'} onClick={() => { } }/>
-        <ProfileOptionItem icon={require('../../../images/logout.png')} title={'Logout'} onClick={() => { } }/>
+        <ProfileOptionItem icon={require('../../../images/logout.png')} title={'Logout'} onClick={() => {AsyncStorage.clear().then(() => {navigation.navigate("SelectUser")})} }/>
       </View>
     </View>
   )
