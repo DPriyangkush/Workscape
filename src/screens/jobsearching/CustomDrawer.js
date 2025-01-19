@@ -3,7 +3,7 @@ import React from 'react'
 import { BG_COLOR, TEXT_COLOR } from '@/src/utils/Colors'
 import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters'
 import { FlatList } from 'react-native-gesture-handler'
-import index from '@/app/(tabs)'
+
 
 const CustomDrawer = () => {
   return (
