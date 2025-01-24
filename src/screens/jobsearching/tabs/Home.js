@@ -2,6 +2,7 @@ import { View, Text, StyleSheet,TextInput, TouchableOpacity, Image } from 'react
 import React from 'react'
 import { BG_COLOR, TEXT_COLOR } from '@/src/utils/Colors'
 import { moderateScale, scale, verticalScale, moderateVerticalScale } from 'react-native-size-matters'
+import CustomSolidBtn from '@/src/common/CustomSolidBtn'
 
 const Home = (  ) => {
   return (
@@ -31,6 +32,11 @@ const Home = (  ) => {
 
         <View style={styles.jobSearchCard}>
           <Image source={require('../../../images/searchmag.gif')} style={styles.gif} />
+          <TextInput style={styles.input} placeholder='Enter Job Title' />
+          <TextInput style={[styles.input, {marginTop: moderateScale(15)}]} placeholder='Preferred Location' />
+          <CustomSolidBtn title={'Search Jobs'} onClick={() => {
+
+          }} />
         </View>
     </View>
   )
@@ -113,13 +119,21 @@ const styles = StyleSheet.create({
       width: '90%',
       height: verticalScale(200),
       alignSelf: 'center',
-      marginTop: moderateScale(50),
-      backgroundColor: '#f2f2f2',
+      marginTop: moderateScale(10),
+      paddingBottom: moderateScale(20),
       borderRadius: moderateScale(10),
     },
     gif: {
-      width: '100%',
-      height: '100%',
+      width: '60%',
+      height: '60%',
       alignSelf: 'center',
+    },
+    input: {
+      width: '90%',
+      height: verticalScale(35),
+      borderWidth: 1,
+      alignSelf: 'center',
+      borderRadius: moderateScale(15),
+      paddingLeft: moderateScale(10),
     }
 });
