@@ -3,9 +3,11 @@ import React from 'react'
 import { BG_COLOR, TEXT_COLOR } from '@/src/utils/Colors'
 import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters'
 import { FlatList } from 'react-native-gesture-handler'
+import { useNavigation } from 'expo-router'
 
 
 const CustomDrawer = () => {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topView}>
@@ -17,10 +19,14 @@ const CustomDrawer = () => {
       </View>
       
       <View style={styles.btnViews}>
-        <TouchableOpacity style={styles.loginBtn}>
+        <TouchableOpacity style={styles.loginBtn} onPress={() => {
+          navigation.navigate('LoginForUser')
+        }}> 
           <Text style={[styles.btnText, {color: BG_COLOR}]}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.SignupBtn}>
+        <TouchableOpacity style={styles.SignupBtn} onPress={() => {
+          navigation.navigate('SignupForUser')
+        }}>
           <Text style={styles.btnText}>Register</Text>
         </TouchableOpacity>
       </View>

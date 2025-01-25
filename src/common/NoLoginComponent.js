@@ -3,19 +3,23 @@ import React from 'react'
 import { BG_COLOR } from '../utils/Colors';
 import { moderateScale } from 'react-native-size-matters';
 import CustomSolidBtn from './CustomSolidBtn';
+import { useNavigation } from 'expo-router';
 
 
 const NoLoginComponent = ({heading, desc}) => {
+  const navigation = useNavigation();
   return (
     <View>
       <Text style={styles.heading}>{heading ? heading : ''}</Text>
       <Text style={styles.desc}>{desc ? desc : ''}</Text>
       <CustomSolidBtn title={'Login'} onClick={() => {
-
+        navigation.navigate('LoginForUser')
       }} />
       <View style={styles.signUpView}>
         <Text style={styles.text1}>{"Don't have an Account?"}</Text>
-        <Text style={styles.text2}>{"Create Account"}</Text>
+        <Text style={styles.text2} onPress={() => {
+          navigation.navigate('SignupForUser')
+        }}>{"Create Account"}</Text>
       </View>
     </View>
   )

@@ -3,11 +3,13 @@ import React from 'react'
 import { BG_COLOR, TEXT_COLOR } from '@/src/utils/Colors'
 import { moderateScale, scale, verticalScale, moderateVerticalScale } from 'react-native-size-matters'
 import CustomSolidBtn from '@/src/common/CustomSolidBtn'
+import { useNavigation } from 'expo-router'
 
 const Home = (  ) => {
+  const navigation = useNavigation()
   return (
     <View style={styles.container}>
-      <TouchableOpacity activeOpacity={1} style={styles.searchBox}>
+      <TouchableOpacity activeOpacity={1} style={styles.searchBox} onPress={() => {navigation.navigate("SearchJob")}}>
         <Image source={require('../../../images/search.png')} style={styles.icon} />
         <Text style={styles.placeholder}>Search Job...</Text>
       </TouchableOpacity>
@@ -22,10 +24,14 @@ const Home = (  ) => {
       </View>
 
       <View style={styles.btnViews}>
-              <TouchableOpacity style={styles.loginBtn}>
+              <TouchableOpacity style={styles.loginBtn} onPress={() => {
+                navigation.navigate('LoginForUser')
+              }}>
                 <Text style={[styles.btnText, {color: BG_COLOR}]}>Login</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.SignupBtn}>
+              <TouchableOpacity style={styles.SignupBtn} onPress={() => {
+                navigation.navigate('SignupForUser')
+              }}>
                 <Text style={styles.btnText}>Register</Text>
               </TouchableOpacity>
             </View>
