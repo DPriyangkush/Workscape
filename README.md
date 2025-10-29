@@ -1,7 +1,6 @@
 # 🌍 WorkScape: Connecting You with Opportunities
 
-WorkScape is a modern **job-searching mobile application** built using **React Native**, **Expo**, **Firebase**, and the **JSearch API (RapidAPI)**.  
-It's designed to simplify the job-hunting process by aggregating listings from multiple sources into a single, user-friendly app experience.
+WorkScape is a modern **job-searching mobile application** built using **React Native**, **Expo**, **Firebase**, and the **JSearch API (RapidAPI)**. It's designed to simplify the job-hunting process by aggregating listings from multiple sources into a single, user-friendly app experience.
 
 ---
 
