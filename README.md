@@ -91,17 +91,6 @@ FIREBASE_AUTH_DOMAIN=your_auth_domain
 FIREBASE_PROJECT_ID=your_project_id
 ```
 
----
-
-## 📸 Screenshots
-
-| Home Screen | Job Details | Saved Jobs |
-|-------------|-------------|------------|
-| ![Home](<img width="367" height="763" alt="image" src="https://github.com/user-attachments/assets/4dc6862a-2bc3-44b0-9b44-9ec012f5a544" />
-) | ![Details](link-to-image) | ![Saved](link-to-image) |
-
----
-
 ## 📈 Roadmap
 
 - ✅ Integrate JSearch API
@@ -138,9 +127,6 @@ If you'd like to improve the UI, add features, or fix bugs, please:
 ## 🛡️ License
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
----
-
 
 ---
 
