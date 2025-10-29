@@ -97,7 +97,8 @@ FIREBASE_PROJECT_ID=your_project_id
 
 | Home Screen | Job Details | Saved Jobs |
 |-------------|-------------|------------|
-| ![Home](link-to-image) | ![Details](link-to-image) | ![Saved](link-to-image) |
+| ![Home](<img width="367" height="763" alt="image" src="https://github.com/user-attachments/assets/4dc6862a-2bc3-44b0-9b44-9ec012f5a544" />
+) | ![Details](link-to-image) | ![Saved](link-to-image) |
 
 ---
 
